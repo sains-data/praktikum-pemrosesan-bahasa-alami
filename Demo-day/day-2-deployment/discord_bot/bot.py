@@ -1,8 +1,8 @@
 """
 Bot Discord — memanggil FastAPI Demo-day.
 
-Usage (dari root Demo-day):
-  python deployment/discord_bot/bot.py
+Usage (hari 2):
+  cd Demo-day/day-2-deployment && python3 discord_bot/bot.py
 """
 import os
 import sys
@@ -12,6 +12,7 @@ import discord
 import httpx
 from dotenv import load_dotenv
 
+# discord_bot → day-2-deployment → Demo-day
 DEMO_DAY_ROOT = Path(__file__).resolve().parents[2]
 load_dotenv(DEMO_DAY_ROOT / ".env")
 

@@ -319,7 +319,7 @@ python 001-run_eda.py
 | `Latent-Dirichlet-Allocation/` | Pemodelan topik LDA | [README](Latent-Dirichlet-Allocation/README.md) |
 | `Optical-Character-Recognition/` | OCR subtitle video (`ekstraksi_subtitle_video/`) | [README](Optical-Character-Recognition/README.md) |
 | `Chatbot/` | BERT, seq2seq, Transformer chatbot | `Bert_chatbot/`, `seq2seq_luong/`, `transformer_chatbot/` (masing-masing ada README) |
-| `Demo-day/` | Demo latih + deploy helpdesk chatbot (UDC) ke Discord via FastAPI | [README](Demo-day/README.md) |
+| `Demo-day/` | Demo 2 hari: hari 1 latih chatbot (UDC), hari 2 FastAPI + Discord | [README](Demo-day/README.md) |
 | `Distillation/` | TinyBERT, DynaBERT, distilasi RNN→BERT | [README](Distillation/README.md) |
 | `Embedding/` | Skip-gram, BERT, ALBERT, NPLM | [README](Embedding/README.md) |
 | `Text_Classification/RoFormer_CLS`, `CAN`, `RDrop`, dll. | Varian klasifikasi tambahan | Lihat `Text_Classification/` |

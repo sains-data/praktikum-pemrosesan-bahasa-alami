@@ -1,37 +1,31 @@
-# Demo-day — Chatbot NLP → FastAPI → Discord
+# Demo-day — Chatbot NLP (2 Hari)
 
 **Mata kuliah:** Pemrosesan Bahasa Alami Berbasis Transformer  
 **Program Studi Sains Data · Fakultas Sains · Institut Teknologi Sumatera**
 
-Paket hands-on untuk **demo development** (latih model di modul [`Chatbot/`](../Chatbot/)) lalu **deployment** via **FastAPI** dan bot **Discord**.
+Paket presentasi **dua sesi**: latih model (hari 1) lalu deploy ke **FastAPI + Discord** (hari 2).
 
 ---
 
-## Topik yang dipilih
+## Jadwal presentasi
 
-### Chatbot Helpdesk Teknis (gaya dukungan IT)
+| Hari | Folder | Fokus | Panduan |
+|------|--------|-------|---------|
+| **Hari 1** | [`day-1-development/`](day-1-development/) | Data UDC, latih BERT/Transformer, checkpoint | [README Hari 1](day-1-development/README.md) |
+| **Hari 2** | [`day-2-deployment/`](day-2-deployment/) | FastAPI, bot Discord, demo live | [README Hari 2](day-2-deployment/README.md) |
 
-**Dataset open source:** [Ubuntu Dialogue Corpus (UDC)](https://github.com/rkadlec/ubuntu-ranking-dataset-creator)
-
-| Aspek | Detail |
-|-------|--------|
-| Lisensi | Bebas dipakai untuk riset & edukasi (cek README resmi repo) |
-| Format | Dialog multi-turn seputar masalah teknis Ubuntu/Linux |
-| Cocok untuk | Pasangan **pertanyaan → solusi** (FAQ, troubleshooting) |
-| Bahasa asli | Inggris — untuk demo Itera disarankan **subset + terjemahan/manual** ke Indonesia, atau gunakan sampel ID di `development/data/` |
-
-**Mengapa UDC?** Data terbuka, banyak dipakai di paper dialog, dan temanya selaras dengan chatbot bantuan (mirip helpdesk kampus: WiFi, login, software).
+**Antara hari 1 dan 2:** pastikan file checkpoint sudah ada di `models/` (lihat checklist di akhir panduan hari 1).
 
 ---
 
-## Dua jalur model (pilih satu untuk deployment)
+## Topik & dataset
 
-| Jalur | Folder latih | Kelebihan demo | Checkpoint ke `models/` |
-|-------|--------------|----------------|-------------------------|
-| **BERT (disarankan Discord)** | [`Chatbot/Bert_chatbot/`](../Chatbot/Bert_chatbot/) | Cepat fine-tune, beam search stabil | `models/bert_dream.bin` |
-| **Transformer** | [`Chatbot/transformer_chatbot/`](../Chatbot/transformer_chatbot/) | Murni encoder–decoder dari nol | `models/chatbot-v2.pt` + `models/vocab.pkl`, `models/data.pkl` |
+**Chatbot helpdesk teknis** — dataset open source: [Ubuntu Dialogue Corpus (UDC)](https://github.com/rkadlec/ubuntu-ranking-dataset-creator).
 
-Untuk **Demo-day live**, tim disarankan **BERT** (lebih ringan di CPU, waktu latih lebih pendek).
+| Model | Folder latih | Checkpoint |
+|-------|--------------|------------|
+| **BERT** (disarankan) | [`Chatbot/Bert_chatbot/`](../Chatbot/Bert_chatbot/) | `models/bert_dream.bin` |
+| **Transformer** | [`Chatbot/transformer_chatbot/`](../Chatbot/transformer_chatbot/) | `models/chatbot-v2.pt` + `models/vocab.pkl` |
 
 ---
 
@@ -39,57 +33,51 @@ Untuk **Demo-day live**, tim disarankan **BERT** (lebih ringan di CPU, waktu lat
 
 ```
 Demo-day/
-├── README.md                 ← Anda di sini
-├── requirements.txt          ← gabungan backend + bot
-├── .env.example
-├── development/
-│   ├── README.md             ← Panduan latih & siapkan data
-│   ├── data/                 ← Sampel & format konversi
-│   └── scripts/              ← Unduh/convert dataset
-├── backend/                  ← FastAPI
-│   ├── app/main.py
-│   └── app/engines/
-└── deployment/
-    ├── README.md             ← Discord + produksi
-    └── discord_bot/bot.py
+├── README.md                      ← Anda di sini
+├── requirements.txt               ← dependensi lengkap (hari 1 + 2)
+├── .env.example                   ← terutama hari 2 (Discord + API)
+├── models/                        ← checkpoint bersama (hari 1 → hari 2)
+├── day-1-development/
+│   ├── README.md                  ← Panduan + slide outline hari 1
+│   ├── data/
+│   └── scripts/
+└── day-2-deployment/
+    ├── README.md                  ← Panduan + slide outline hari 2
+    ├── backend/                   ← FastAPI
+    └── discord_bot/
 ```
 
 ---
 
-## Alur singkat (3 hari demo)
+## Alur dua hari
 
 ```mermaid
-flowchart LR
-  A[UDC / data sampel] --> B[Chatbot/Bert_chatbot train]
-  B --> C[Salin checkpoint ke Demo-day/models]
-  C --> D[FastAPI backend]
-  D --> E[Discord bot]
+flowchart TB
+  subgraph D1 [Hari 1 — Development]
+    A[Data UDC / sampel ID] --> B[Latih di Chatbot/]
+    B --> C[models/bert_dream.bin]
+  end
+  subgraph D2 [Hari 2 — Deployment]
+    C --> D[FastAPI /chat]
+    D --> E[Bot Discord]
+  end
 ```
-
-1. Ikuti [`development/README.md`](development/README.md) — data + latih.  
-2. Jalankan API: [`backend/README.md`](backend/README.md).  
-3. Deploy Discord: [`deployment/README.md`](deployment/README.md).
 
 ---
 
-## Perintah cepat
+## Setup sekali (sebelum hari 1)
 
 ```bash
 cd Demo-day
-python -m venv .venv && source .venv/bin/activate
+python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env
-
-# Terminal 1 — API
-uvicorn backend.app.main:app --reload --port 8000
-
-# Terminal 2 — Discord (set DISCORD_TOKEN di .env)
-python deployment/discord_bot/bot.py
 ```
+
+Hari 2 tambahan: `cp .env.example .env` dan isi `DISCORD_TOKEN`.
 
 ---
 
 ## Kredit
 
-- Modul latih: [shawroad/NLP_pytorch_project](https://github.com/shawroad/NLP_pytorch_project) — folder `Chatbot/`
+- Modul latih: [shawroad/NLP_pytorch_project](https://github.com/shawroad/NLP_pytorch_project) — `Chatbot/`
 - Dataset: [Ubuntu Ranking Dataset Creator](https://github.com/rkadlec/ubuntu-ranking-dataset-creator)

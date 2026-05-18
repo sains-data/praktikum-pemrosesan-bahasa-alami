@@ -1,6 +1,6 @@
 """
 Buat data sampel helpdesk (ID) untuk demo BERT & Transformer.
-Jalankan dari folder development/: python scripts/prepare_sample_data.py
+Jalankan dari folder day-1-development/: python3 scripts/prepare_sample_data.py
 """
 from pathlib import Path
 

@@ -2,7 +2,8 @@
 import os
 from pathlib import Path
 
-DEMO_DAY_ROOT = Path(__file__).resolve().parents[2]
+# Demo-day/ (root paket): app → backend → day-2-deployment → Demo-day
+DEMO_DAY_ROOT = Path(__file__).resolve().parents[3]
 CHATBOT_ROOT = DEMO_DAY_ROOT.parent / "Chatbot"
 
 MODEL_TYPE = os.getenv("MODEL_TYPE", "bert").lower().strip()

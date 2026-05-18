@@ -13,4 +13,4 @@ Letakkan file model hasil latih di sini agar backend FastAPI dapat memuatnya.
 - `vocab.txt`
 - `pytorch_model.bin` (BERT pra-latih)
 
-Lihat [`development/README.md`](../development/README.md) untuk langkah lengkap.
+Lihat [`day-1-development/README.md`](../day-1-development/README.md) (latih) dan [`day-2-deployment/README.md`](../day-2-deployment/README.md) (deploy).
