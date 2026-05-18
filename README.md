@@ -58,22 +58,32 @@ pip install transformers numpy pandas scikit-learn tqdm
 
 ### Struktur repositori
 
+Setiap modul utama memiliki **`README.md`** panduan hands-on (Bahasa Indonesia). Nama folder di bawah ini adalah path aktual di repositori.
+
 ```
 NLP-Projects/
-├── Chatbot/              # Chatbot: BERT, seq2seq, Transformer
-├── Distillation/         # Distilasi & kompresi model BERT
-├── Embedding/            # Word2Vec, BERT, ALBERT, NPLM
-├── NER/                  # Named Entity Recognition
-├── NMT/                  # Neural Machine Translation
-├── Pretrain_Model/       # Pra-pelatihan / lanjutan pelatihan BERT
-├── Reading_comprehension/# Machine Reading Comprehension
-├── Text_Classification/  # Klasifikasi teks (BERT, RoBERTa, XLNet, …)
-├── Text_Generation/      # GPT-2, T5, generasi teks
-├── Text_Similarity/      # Kemiripan semantik (SimCSE, ESIM, …)
-├── Text_Ranking/         # Pemeringkatan teks
-├── LLM/                  # Contoh fine-tuning LLM (LoRA, PEFT)
-├── data_augmentation/    # Augmentasi data
-└── …                     # Modul pendukung lainnya
+├── Chatbot/                      # Chatbot: BERT, seq2seq, Transformer
+├── Data-Augmentation/            # EDA, back-translation
+├── Distillation/                 # Distilasi & kompresi model BERT
+├── Embedding/                    # Word2Vec, BERT, ALBERT, NPLM
+├── Image-Caption/                # Caption gambar (ResNet+RNN, CLIP)
+├── Keyword/                      # TF-IDF, TextRank, KeyBERT
+├── Large-Language-Model/         # LoRA ChatGLM, PEFT, Accelerate
+├── Latent-Dirichlet-Allocation/  # Pemodelan topik LDA
+├── Named-Entity-Recognition/     # NER: BiLSTM-CRF, BERT-CRF, GlobalPointer
+├── Neural-Machine-Translation/   # Seq2seq GRU/LSTM, Transformer NMT
+├── Optical-Character-Recognition/ # OCR subtitle video
+├── Pretrain-Model/               # Pra-pelatihan BERT / WoBERT / MLM-only
+├── Reading-Comprehension/        # Machine Reading Comprehension
+├── Relation-Extraction/          # Ekstraksi relasi
+├── Slot_Filling/                 # Intent + slot (JointBERT)
+├── Text_Classification/          # Klasifikasi teks (BERT, RoBERTa, XLNet, …)
+├── Text_Clustering/              # LDA, K-means, DBSCAN
+├── Text_Corrector/               # Koreksi ejaan BERT
+├── Text_Generation/              # GPT-2, T5, generasi teks
+├── Text_Ranking/                 # BM25, DPR, re-ranking
+├── Text_Similarity/              # SimCSE, ESIM, Bert Whitening, …
+└── README-old.md                 # README asli (Mandarin)
 ```
 
 ---
@@ -111,14 +121,14 @@ Urutan di bawah ini selaras dengan progres mata kuliah **berbasis Transformer**.
 |-----------------|-------|----------------|-------|
 | 1 | Representasi teks | `Embedding/` | Word2Vec → BERT/ALBERT |
 | 2 | Klasifikasi teks | `Text_Classification/` | TextCNN, BiLSTM (baseline) → `roberta_classification`, `How_to_finetune_bert_classification` |
-| 3 | Pelabelan urutan (NER) | `NER/` | `BiLSTM_CRF_Ner` → `Bert_CRF_Ner`, `Bert_Softmax_Ner` |
-| 4 | Arsitektur seq2seq & perhatian | `NMT/`, `Chatbot/seq2seq_luong` | GRU + attention → `NMT/Transformers_NMT`, `Chatbot/transformer_chatbot` |
-| 5 | Pra-pelatihan & fine-tuning | `Pretrain_Model/` | `bert-pretrain`, konsep MLM |
+| 3 | Pelabelan urutan (NER) | `Named-Entity-Recognition/` | `BiLSTM_CRF_Ner` → `Bert_CRF_Ner`, `Bert_Softmax_Ner` |
+| 4 | Arsitektur seq2seq & perhatian | `Neural-Machine-Translation/`, `Chatbot/seq2seq_luong` | GRU + attention → `Transformers_NMT`, `Chatbot/transformer_chatbot` |
+| 5 | Pra-pelatihan & fine-tuning | `Pretrain-Model/` | `bert-pretrain`, konsep MLM |
 | 6 | Kemiripan semantik | `Text_Similarity/` | `SimCSE_Unsupervised`, `Bert_Whitening`, `ESIM` |
 | 7 | Generasi teks | `Text_Generation/` | `Simple-GPT2`, `GPT2_SummaryGen` |
-| 8 | Pemahaman bacaan & dialog | `Reading_comprehension/mrc_baseline`, `Chatbot/Bert_chatbot` | BERT untuk MRC & chatbot |
+| 8 | Pemahaman bacaan & dialog | `Reading-Comprehension/mrc_baseline`, `Chatbot/Bert_chatbot` | BERT untuk MRC & chatbot |
 | 9 | Distilasi & efisiensi | `Distillation/tiny_bert` | Menyusutkan model guru (BERT) |
-| 10 | Topik lanjutan (opsional) | `LLM/`, `Text_Ranking/`, `Slot_Filling/` | LoRA, ranking, intent+slot |
+| 10 | Topik lanjutan (opsional) | `Large-Language-Model/`, `Text_Ranking/`, `Slot_Filling/` | LoRA, ranking, intent+slot |
 
 Anda bebas menyesuaikan urutan dengan silabus dosen pengampu.
 
@@ -154,30 +164,51 @@ Di bawah ini, setiap entri menjelaskan **tujuan modul** dan **perintah utama**. 
 | `003-albert.py` | Latih ALBERT | `python 003-albert.py` |
 | `004-NPLM.py` | Neural probabilistic LM (klasik) | `python 004-NPLM.py` |
 
-### NER (Named Entity Recognition)
+### Named-Entity-Recognition (NER)
+
+Panduan indeks: [`Named-Entity-Recognition/README.md`](Named-Entity-Recognition/README.md)
 
 | Modul | Deskripsi | Perintah |
 |-------|-----------|----------|
 | `Bert_CRF_Ner` | BERT + CRF untuk sequence labeling | `python run_ner_crf.py` → `python inference.py` |
 | `Bert_Softmax_Ner` | BERT + softmax per token | `python train.py` → `python inference.py` |
 | `BiLSTM_CRF_Ner` | Baseline BiLSTM + CRF | `python train.py` |
-| `GlobalPointer` | Pointer network untuk NER (lanjutan) | Lihat `NER/GlobalPointer/data/README.md` |
+| `GlobalPointer` | Pointer network untuk NER (lanjutan) | Lihat `GlobalPointer/data/README.md` |
 
-### NMT (Neural Machine Translation)
+Jalankan dari direktori modul, contoh:
+
+```bash
+cd Named-Entity-Recognition/Bert_CRF_Ner
+python run_ner_crf.py
+```
+
+### Neural-Machine-Translation (NMT)
+
+Panduan: [`Neural-Machine-Translation/README.md`](Neural-Machine-Translation/README.md)
+
+| Modul / berkas | Deskripsi | Perintah |
+|----------------|-----------|----------|
+| `001-gru_seq2seq_attention.py` | Seq2seq GRU + attention (monolit) | `python 001-gru_seq2seq_attention.py` |
+| `002-lstm_seq2seq_attention.py` | Seq2seq LSTM + attention | `python 002-lstm_seq2seq_attention.py` |
+| `GRU_attention/` | GRU + attention (modular) | `python train.py` |
+| `Transformers_NMT/` | **Transformer** untuk terjemahan mesin | `python process_data.py` → `python train.py` |
+
+```bash
+cd Neural-Machine-Translation/Transformers_NMT
+python train.py
+```
+
+### Pretrain-Model (pra-pelatihan)
+
+Panduan: [`Pretrain-Model/README.md`](Pretrain-Model/README.md)
 
 | Modul | Deskripsi | Perintah |
 |-------|-----------|----------|
-| `GRU_attention` | Seq2seq GRU + attention sederhana | `python train.py` |
-| `Transformers_NMT` | **Transformer** untuk terjemahan mesin | `python train.py` |
+| `bert-pretrain/` | MLM + NSP BERT | `python get_train_data.py` → `python run_pretrain.py` |
+| `mask_pretrain/` | MLM saja (tanpa NSP) | `python run_pretrain.py` |
+| `wobert-pretrain/` | WoBERT + whole-word mask | `python process_pretrain_data.py` → `python run_pretrain.py` |
 
-### Pretrain_Model (pra-pelatihan)
-
-| Modul | Deskripsi | Perintah |
-|-------|-----------|----------|
-| `bert-pretrain` | MLM BERT (~15% token di-mask) | `python get_train_data.py` → `python run_pretrain.py` |
-| `wobert-pretrain` | WoBERT + kosakata kustom | `python process_pretrain_data.py` → `python run_pretrain.py` |
-
-### Reading_comprehension (MRC)
+### Reading-Comprehension (MRC)
 
 | Modul | Deskripsi | Perintah |
 |-------|-----------|----------|
@@ -255,7 +286,9 @@ Di bawah ini, setiap entri menjelaskan **tujuan modul** dan **perintah utama**. 
 | `BM25.py`, `TF_IDF.py` | Baseline statistik | `python BM25.py` / `python TF_IDF.py` |
 | `Bert_Whitening` | Whitening embedding BERT tanpa latih ulang | `python run_bert_whitening.py` |
 
-### data_augmentation
+### Data-Augmentation
+
+Panduan: [`Data-Augmentation/README.md`](Data-Augmentation/README.md)
 
 | Modul | Deskripsi | Perintah |
 |-------|-----------|----------|
@@ -263,29 +296,39 @@ Di bawah ini, setiap entri menjelaskan **tujuan modul** dan **perintah utama**. 
 | Back-translation (Baidu) | Augmentasi via terjemahan bolak-balik | `python 002-run_contrslate_data_aug.py` |
 | Back-translation (Google) | Sama, via Google Translate | `python 003-google_trans_data_aug.py` |
 
-### relation_extraction
+```bash
+cd Data-Augmentation
+python 001-run_eda.py
+```
+
+### Relation-Extraction
 
 | Modul | Deskripsi | Perintah |
 |-------|-----------|----------|
 | `lstm_cnn_information_extract` | Ekstraksi informasi LSTM+CNN | `python train.py` → `python inference.py` |
 | `relation_classification` | Klasifikasi relasi BiLSTM+attention | `python data_helper.py` → `python train.py` |
 
-### Modul tambahan di salinan Itera
+### Modul tambahan (panduan hands-on tersedia)
 
-| Folder | Isi singkat |
-|--------|-------------|
-| `LLM/` | Contoh LoRA ChatGLM, PEFT, Accelerate |
-| `Image_Caption/` | Caption gambar (ResNet+RNN, CLIP) |
-| `Keyword/`, `LDA/`, `OCR/` | Ekstraksi kata kunci, topik, OCR |
-| `Text_Classification/RoFormer_CLS`, `CAN`, `RDrop`, dll. | Varian klasifikasi tambahan |
-| `Text_Similarity/ConSBERT`, `SentenceBert`, `ESimCSE`, … | Varian kemiripan semantik |
+| Folder | Isi singkat | Panduan |
+|--------|-------------|---------|
+| `Large-Language-Model/` | LoRA ChatGLM, PEFT BERT, Accelerate | [README](Large-Language-Model/README.md) |
+| `Image-Caption/` | ResNet+RNN, CLIP caption | [README](Image-Caption/README.md) |
+| `Keyword/` | TF-IDF, TextRank, KeyBERT | [README](Keyword/README.md) |
+| `Latent-Dirichlet-Allocation/` | Pemodelan topik LDA | [README](Latent-Dirichlet-Allocation/README.md) |
+| `Optical-Character-Recognition/` | OCR subtitle video (`ekstraksi_subtitle_video/`) | [README](Optical-Character-Recognition/README.md) |
+| `Chatbot/` | BERT, seq2seq, Transformer chatbot | `Bert_chatbot/`, `seq2seq_luong/`, `transformer_chatbot/` (masing-masing ada README) |
+| `Distillation/` | TinyBERT, DynaBERT, distilasi RNN→BERT | [README](Distillation/README.md) |
+| `Embedding/` | Skip-gram, BERT, ALBERT, NPLM | [README](Embedding/README.md) |
+| `Text_Classification/RoFormer_CLS`, `CAN`, `RDrop`, dll. | Varian klasifikasi tambahan | Lihat `Text_Classification/` |
+| `Text_Similarity/ConSBERT`, `SentenceBert`, `ESimCSE`, … | Varian kemiripan semantik | Lihat `Text_Similarity/` |
 
 ---
 
 ## Tips praktikum
 
 1. **Mulai dari modul kecil** — misalnya `Embedding/001-skipgram-word2vec.py` atau `Text_Classification/001-TextCNN.py` sebelum BERT penuh.
-2. **Perhatikan path data** — banyak error berasal dari path relatif; pastikan working directory benar.
+2. **Perhatikan path data** — banyak error berasal dari path relatif; pastikan working directory benar (contoh: `cd Neural-Machine-Translation/Transformers_NMT`).
 3. **GPU memori** — kurangi `batch_size` di file config jika terjadi OOM.
 4. **Bahasa data** — sebagian besar contoh menggunakan **teks Mandarin**; untuk tugas Indonesia, siapkan korpus sendiri dan sesuaikan tokenizer (mis. multilingual BERT atau model Indonesia).
 5. **Versi library** — repositori asli dari 2023; jika `transformers` versi terbaru menimbulkan error API, catat versi yang berhasil di laporan.
