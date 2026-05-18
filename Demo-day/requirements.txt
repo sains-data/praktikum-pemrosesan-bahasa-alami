@@ -1,0 +1,16 @@
+# Demo-day: FastAPI backend + Discord bot
+fastapi>=0.100.0
+uvicorn[standard]>=0.23.0
+pydantic>=2.0.0
+httpx>=0.24.0
+discord.py>=2.3.0
+python-dotenv>=1.0.0
+
+# Model (sesuaikan dengan CUDA di mesin Anda)
+torch>=2.0.0
+numpy>=1.24.0
+pandas>=2.0.0
+tqdm>=4.65.0
+
+# BERT chatbot (Chatbot/Bert_chatbot)
+transformers>=4.30.0
