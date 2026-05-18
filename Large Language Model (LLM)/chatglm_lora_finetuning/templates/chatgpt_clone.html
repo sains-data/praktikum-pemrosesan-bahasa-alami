@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+  #result {
+    padding: 10px;
+    background-color: #eee;
+    margin-top: 30px;
+  }
+</style>
+<h3>Demo streaming teks (Server-Sent Events)</h3>
+<form action="/chatgpt-clone" method="post">
+  <div class="row">
+    <div class="col-10">
+        <textarea class="form-control" rows="5" cols="20" name="question" id="question">Ketik pertanyaan Anda di sini</textarea>
+    </div>
+    <div class="col-2">
+        <button type="button" id="submitbtn" class="btn btn-primary">Kirim</button>
+    </div>
+  </div>
+  <br>
+  <div id="result">Hasil akan muncul di sini</div>
+</form>
+{% endblock %}
+
+{% block myjavascript %}
+<script type="text/javascript">
+    $(function(){
+        $("#submitbtn").click(function(){
+            $("#result").html("Memproses permintaan...")
+
+            var source = new EventSource("/chatgpt-clone?question="+encodeURIComponent($("#question").val()))
+            var begin_output = false
+            source.onmessage = function(event){
+                if (begin_output == false){
+                    begin_output = true
+                    $("#result").html("")
+                }
+                if(event.data == '[DONE]'){
+                    source.close()
+                } else {
+                    $("#result").html(event.data)
+                }
+            }
+        })
+    })
+</script>
+{% endblock %}

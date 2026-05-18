@@ -1,0 +1,13 @@
+# ChatGLM LoRA — panduan lengkap
+
+Lihat **[README.md](README.md)** (Bahasa Indonesia) untuk teori, langkah hands-on, metrik, dan deploy.
+
+## Dependensi (versi referensi)
+
+```
+transformers==4.27.1
+icetk==0.0.4
+deepspeed==0.8.3
+peft==0.2.0
+torch>=2.0
+```
