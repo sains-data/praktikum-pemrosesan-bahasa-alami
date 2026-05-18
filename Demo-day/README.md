@@ -24,7 +24,7 @@ Paket presentasi **dua sesi**: latih model (hari 1) lalu deploy ke **FastAPI + D
 
 | Model | Folder latih | Checkpoint |
 |-------|--------------|------------|
-| **BERT** (disarankan) | [`Chatbot/Bert_chatbot/`](../Chatbot/Bert_chatbot/) | `models/bert_dream.bin` |
+| **BERT** | [`Chatbot/Bert_chatbot/`](../Chatbot/Bert_chatbot/) | `models/bert_dream.bin` |
 | **Transformer** | [`Chatbot/transformer_chatbot/`](../Chatbot/transformer_chatbot/) | `models/chatbot-v2.pt` + `models/vocab.pkl` |
 
 ---

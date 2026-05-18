@@ -9,20 +9,6 @@ Pada hari ini Anda menjalankan **FastAPI** sebagai backend inferensi, lalu mengh
 
 ---
 
-## Agenda presentasi (± 60–90 menit)
-
-| Menit | Bagian | Yang ditunjukkan |
-|-------|--------|------------------|
-| 0–5 | **Recap Hari 1** | Tampilkan `models/bert_dream.bin`, 1 contoh dialog konsol |
-| 5–20 | **Arsitektur deploy** | Diagram: Discord → HTTP → FastAPI → engine BERT |
-| 20–35 | **FastAPI** | `uvicorn`, `/docs`, `curl /chat` |
-| 35–50 | **Discord** | Developer Portal, token, intent, invite bot |
-| 50–70 | **Demo live** | `!chat` dan mention bot di channel |
-| 70–80 | **Troubleshooting** | health check, token, API down |
-| 80–90 | **Tanya jawab** | Metrik latensi, batasan model |
-
----
-
 ## Prasyarat (cek sebelum presentasi)
 
 - [ ] `Demo-day/models/bert_dream.bin` (atau artefak Transformer)  

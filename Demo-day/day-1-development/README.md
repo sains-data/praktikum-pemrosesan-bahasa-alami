@@ -9,22 +9,6 @@ Pada hari ini Anda menyiapkan data, melatih model (**BERT** atau **Transformer**
 
 ---
 
-## Agenda presentasi (± 60–90 menit)
-
-Gunakan urutan ini saat demo di kelas:
-
-| Menit | Bagian | Yang ditunjukkan |
-|-------|--------|------------------|
-| 0–10 | **Konteks** | Topik helpdesk, UDC open source, arsitektur BERT seq2seq vs Transformer |
-| 10–20 | **Data** | `python3 scripts/prepare_sample_data.py` → format `pertanyaan=jawaban` |
-| 20–45 | **Latih BERT** | `Chatbot/Bert_chatbot/train.py`, loss turun, `interface.py` |
-| 45–55 | **Checkpoint** | Salin `bert_dream.bin` → `Demo-day/models/` |
-| 55–60 | **Penutup hari 1** | Checklist serah terima ke hari 2 |
-
-**Opsional (jika waktu):** jalur Transformer singkat — `pre_process.py` → `train.py` → `export.py`.
-
----
-
 ## 1. Siapkan data
 
 ### Opsi A — Sampel cepat (demo kelas)
@@ -63,7 +47,7 @@ Detail format: [`data/README.md`](data/README.md).
 
 ---
 
-## 2. Jalur A — BERT (disarankan)
+## 2. Jalur A — BERT (opsi 1)
 
 Panduan modul: [`Chatbot/Bert_chatbot/README.md`](../../Chatbot/Bert_chatbot/README.md)
 
@@ -93,7 +77,7 @@ Contoh input: `WiFi kampus tidak bisa connect?`
 
 ---
 
-## 3. Jalur B — Transformer (alternatif)
+## 3. Jalur B — Transformer (opsi 2)
 
 Panduan: [`Chatbot/transformer_chatbot/README.md`](../../Chatbot/transformer_chatbot/README.md)
 
@@ -136,9 +120,7 @@ Centang sebelum menutup sesi — ini yang dibawa ke **Hari 2**:
 - [ ] `Demo-day/models/bert_dream.bin` (atau `chatbot-v2.pt` + `vocab.pkl`) ada  
 - [ ] `Chatbot/Bert_chatbot/data/vocab.txt` dan `pytorch_model.bin` tidak hilang (dibutuhkan API)  
 - [ ] Minimal 3 contoh Q–A yang jawabannya masuk akal (screenshot untuk laporan)  
-- [ ] Tim tahu `MODEL_TYPE=bert` atau `transformer` yang dipakai besok  
-
-**Jangan lakukan di Hari 1** (sisakan untuk presentasi Hari 2): menjalankan FastAPI, token Discord, bot live.
+- [ ] Tim tahu `MODEL_TYPE=bert` atau `transformer` yang dipakai besok 
 
 ---
 
